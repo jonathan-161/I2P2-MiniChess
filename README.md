@@ -1,1 +1,1 @@
-# I2P2-MiniChess
+NTHU I2P3   MiniChess AI
