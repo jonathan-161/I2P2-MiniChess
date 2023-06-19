@@ -13,7 +13,24 @@
  */
 int State::evaluate(){
   // [TODO] design your own evaluation function
-  return 0;
+    // Pa, Ro, Kn, Bi, Qu, Ki
+    int piece_vals[7] = { 0, 2, 6, 7, 8, 20, 1000000 }; 
+    int score = 0;
+    auto self_board = this->board.board[this->player];
+    auto oppn_board = this->board.board[1 - this->player];
+    for (int i = 0; i < BOARD_H; i++) {
+        for (int j = 0; j < BOARD_W; j++) {
+            int piece = self_board[i][j];
+            if (piece != 0) {
+                score += piece_vals[piece];
+            }
+            int oppn_piece = oppn_board[i][j];
+            if (oppn_piece != 0) {
+                score -= piece_vals[oppn_piece];
+            }
+        }
+    }
+    return score;
 }
 
 

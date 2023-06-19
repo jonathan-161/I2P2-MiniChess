@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\document",
+    "\\src",
+    "\\src\\player",
+    "\\src\\policy",
+    "\\src\\state",
+    "\\unittest"
+  ],
+  "SelectedNode": "\\src\\policy\\minimax.hpp",
+  "PreviewInSolutionExplorer": false
+}
