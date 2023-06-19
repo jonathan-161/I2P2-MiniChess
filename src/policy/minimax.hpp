@@ -7,6 +7,6 @@
  * Your policy class should have get_move method
  */
 class MiniMax{
-private:
+public:
 	static int minimax(State* node, int depth, bool maximizingPlayer);
 };

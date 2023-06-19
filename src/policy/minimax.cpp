@@ -11,23 +11,21 @@
  * @param depth You may need this for other policy
  * @return Move 
  */
-int Minimax::minimax(State* node, int depth, bool max) {
+int MiniMax::minimax(State* node, int depth, bool maxi) {
     if (depth == 0) {
         return node->evaluate();
     }
-    if (max) {
+    if (maxi) {
         int value = -999999999;
-        for (auto& action : node->get_legal_actions()) {
-            value = std::max(value, minimax(action, depth - 1, false));
-            delete child;
+        for (auto& action : node->legal_actions) {
+            value = std::max(value, minimax(node->next_state(action), depth - 1, false));
         }
         return value;
     }
     else {
         int value = 999999999;
-        for (auto& action : node->get_legal_actions()) {
-            value = std::min(value, minimax(action, depth - 1, true));
-            delete child;
+        for (auto& action : node->legal_actions) {
+            value = std::min(value, minimax(node->next_state(action), depth - 1, true));
         }
         return value;
     }

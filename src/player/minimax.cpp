@@ -40,16 +40,29 @@ void read_board(std::ifstream& fin) {
  */
 void write_valid_spot(std::ofstream& fout) {
   // Keep updating the output until getting killed.
-  while(true) {
-    // Choose a random spot.
-    auto move = MiniMax::(root, 0);
-    fout << move.first.first << " " << move.first.second << " "\
-         << move.second.first << " " << move.second.second << std::endl;
-    
-    // Remember to flush the output to ensure the last action is written to file.
-    fout.flush();
-    break;
-  }
+    if (!root->legal_actions.size())
+        root->get_legal_actions();
+    int res, cur, first = 1;
+    Move dir;
+    for(auto& it: root->legal_actions) {
+        cur = MiniMax::minimax(root->next_state(it), 4, false);
+        if (first) {
+            first = 0;
+            res = cur;
+        }
+        else if (cur > res) {
+            res = cur;
+        }
+        if (dir.first == dir.second)
+            dir = root->legal_actions[0];
+
+        fout << dir.first.first << " " << dir.first.second << " "\
+            << dir.second.first << " " << dir.second.second << std::endl;
+
+        // Remember to flush the output to ensure the last action is written to file.
+        fout.flush();
+        break;
+    }
 }
 
 
