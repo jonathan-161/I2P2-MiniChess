@@ -42,8 +42,8 @@ void write_valid_spot(std::ofstream& fout) {
     // Keep updating the output until getting killed.
     if (!root->legal_actions.size())
         root->get_legal_actions();
-    int res, cur, first = 1;
-    Move dir;
+    int res, cur, first = 1, overwrite = 0;
+    Move dir, second; //second to store second best, in case the first one doesn't change anything
     for(auto& it: root->legal_actions) {
         cur = AlphaBeta::alphabeta(root->next_state(it), 4, -1000, 1000, false);
         if (first) {
@@ -52,10 +52,14 @@ void write_valid_spot(std::ofstream& fout) {
         }
         else if (cur >= res) {
             res = cur;
+            if (!overwrite)
+                overwrite = 1;
+            else if (overwrite)
+                second = dir;
             dir = it;
         }
         if (dir.first == dir.second)
-            dir = root->legal_actions[0];
+            dir = overwrite? second: root->legal_actions[0];
 
         
         fout << dir.first.first << " " << dir.first.second << " "\

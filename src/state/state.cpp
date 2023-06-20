@@ -13,7 +13,7 @@
  */
 int State::evaluate() {
     // Pawn, Rook, Knight, Bishop, Queen, King
-    int pieces[7] = { 0, 2, 6, 7, 8, 20, 1000 }; 
+    int pieces[7] = { 0, 2, 6, 7, 8, 20, 10000 }; 
     int score = 0;
     auto my_board = this->board.board[this->player];
     auto opp_board = this->board.board[1 - this->player];
