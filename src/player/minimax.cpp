@@ -50,8 +50,9 @@ void write_valid_spot(std::ofstream& fout) {
             first = 0;
             res = cur;
         }
-        else if (cur > res) {
+        else if (cur >= res) {
             res = cur;
+            dir = it;
         }
         if (dir.first == dir.second)
             dir = root->legal_actions[0];
@@ -62,7 +63,6 @@ void write_valid_spot(std::ofstream& fout) {
 
         // Remember to flush the output to ensure the last action is written to file.
         fout.flush();
-        break;
     }
 }
 

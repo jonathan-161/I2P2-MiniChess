@@ -13,7 +13,7 @@
  */
 int State::evaluate() {
     // Pawn, Rook, Knight, Bishop, Queen, King
-    int pieces[7] = { 0, 2, 6, 7, 8, 20, 100 }; 
+    int pieces[7] = { 0, 2, 6, 7, 8, 20, 1000 }; 
     int score = 0;
     auto my_board = this->board.board[this->player];
     auto opp_board = this->board.board[1 - this->player];
@@ -34,7 +34,7 @@ int State::evaluate() {
         }
     }
     //Power in numbers...?
-    //score += (self_material - opp_material) * 5;
+    score += (self_material - opp_material) * 5;
     return score;
 }
 

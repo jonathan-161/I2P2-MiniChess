@@ -45,13 +45,14 @@ void write_valid_spot(std::ofstream& fout) {
     int res, cur, first = 1;
     Move dir;
     for(auto& it: root->legal_actions) {
-        cur = AlphaBeta::alphabeta(root->next_state(it), 4, -1000000, 1000, false);
+        cur = AlphaBeta::alphabeta(root->next_state(it), 4, -1000, 1000, false);
         if (first) {
             first = 0;
             res = cur;
         }
-        else if (cur > res) {
+        else if (cur >= res) {
             res = cur;
+            dir = it;
         }
         if (dir.first == dir.second)
             dir = root->legal_actions[0];
@@ -62,7 +63,6 @@ void write_valid_spot(std::ofstream& fout) {
 
         // Remember to flush the output to ensure the last action is written to file.
         fout.flush();
-        break;
     }
 }
 

@@ -12,10 +12,15 @@
  * @return Move 
  */
 int MiniMax::minimax(State* node, int depth, bool maxi) {
+    if (!node->legal_actions.size())
+        node->get_legal_actions();
     if (depth == 0) {
         return node->evaluate();
     }
     if (maxi) {
+        if (node->game_state == WIN) {
+            return node->evaluate() + 2000;
+        }
         int value = -1000000;
         for (auto& action : node->legal_actions) {
             value = std::max(value, minimax(node->next_state(action), depth - 1, false));
@@ -23,6 +28,9 @@ int MiniMax::minimax(State* node, int depth, bool maxi) {
         return value;
     }
     else {
+        if (node->game_state == WIN) {
+            return node->evaluate() - 2000;
+        }
         int value = 1000000;
         for (auto& action : node->legal_actions) {
             value = std::min(value, minimax(node->next_state(action), depth - 1, true));
