@@ -8,6 +8,6 @@
     "\\src\\state",
     "\\unittest"
   ],
-  "SelectedNode": "\\src\\policy\\minimax.hpp",
+  "SelectedNode": "\\src\\player\\minimax.cpp",
   "PreviewInSolutionExplorer": false
 }

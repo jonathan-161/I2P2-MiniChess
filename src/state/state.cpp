@@ -11,25 +11,30 @@
  * 
  * @return int 
  */
-int State::evaluate(){
-  // [TODO] design your own evaluation function
-    // Pa, Ro, Kn, Bi, Qu, Ki
-    int pieces[7] = { 0, 2, 6, 7, 8, 20, 1000000 }; 
+int State::evaluate() {
+    // Pawn, Rook, Knight, Bishop, Queen, King
+    int pieces[7] = { 0, 2, 6, 7, 8, 20, 100 }; 
     int score = 0;
-    auto self_board = this->board.board[this->player];
-    auto oppn_board = this->board.board[1 - this->player];
+    auto my_board = this->board.board[this->player];
+    auto opp_board = this->board.board[1 - this->player];
+    int self_material = 0, opp_material = 0;
+    // Evaluate piece values
     for (int i = 0; i < BOARD_H; i++) {
         for (int j = 0; j < BOARD_W; j++) {
-            int piece = self_board[i][j];
+            int piece = my_board[i][j];
             if (piece != 0) {
                 score += pieces[piece];
+                self_material++;
             }
-            int oppn_piece = oppn_board[i][j];
-            if (oppn_piece != 0) {
-                score -= pieces[oppn_piece];
+            int opp = opp_board[i][j];
+            if (opp != 0) {
+                score -= pieces[opp];
+                opp_material++;
             }
         }
     }
+    //Power in numbers...?
+    //score += (self_material - opp_material) * 5;
     return score;
 }
 

@@ -16,14 +16,14 @@ int MiniMax::minimax(State* node, int depth, bool maxi) {
         return node->evaluate();
     }
     if (maxi) {
-        int value = -999999999;
+        int value = -1000000;
         for (auto& action : node->legal_actions) {
             value = std::max(value, minimax(node->next_state(action), depth - 1, false));
         }
         return value;
     }
     else {
-        int value = 999999999;
+        int value = 1000000;
         for (auto& action : node->legal_actions) {
             value = std::min(value, minimax(node->next_state(action), depth - 1, true));
         }

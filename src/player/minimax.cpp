@@ -39,7 +39,7 @@ void read_board(std::ifstream& fin) {
  * @param fout 
  */
 void write_valid_spot(std::ofstream& fout) {
-  // Keep updating the output until getting killed.
+    // Keep updating the output until getting killed.
     if (!root->legal_actions.size())
         root->get_legal_actions();
     int res, cur, first = 1;
@@ -56,6 +56,7 @@ void write_valid_spot(std::ofstream& fout) {
         if (dir.first == dir.second)
             dir = root->legal_actions[0];
 
+        
         fout << dir.first.first << " " << dir.first.second << " "\
             << dir.second.first << " " << dir.second.second << std::endl;
 
